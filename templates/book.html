@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book</title>
+    <style>
+        body {
+            background-color: #4A676A;
+            font-family: Roboto, Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3.8rem;
+            color: #f4f4f4;
+        }
+
+        .books {
+            color: #f4f4f4;
+            list-style-type: none;
+        }
+
+        .books a {
+            color: #f4f4f4;
+            text-decoration: none;
+        }
+
+        .books a:hover {
+                color: #C1D0D0;
+            }
+
+        .navbutton a{
+            padding: 15px;
+            text-decoration: none;
+            color: black;
+        }
+
+        .editButton {
+            width: 100px;
+            height: 30px;
+        }
+
+        .editButton a{
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <button class="navbutton"><a href="/">Home</a></button>
+    <button class="navbutton"><a href="unordered-books">Unordered books</a></button>
+    <button class="navbutton"><a href="add_book">Add a new Book</a></button>
+    <h1>All The Books</h1>
+
+    <ul class="books">
+        {% for book in books %}
+        <li>
+            <a href="/book/{{ book.id }}/"><h2>{{book.name}}</h2></a>
+            <p>Description: {{book.description}}</p>
+            <p>Count: {{book.count}}</p>
+            <p>Author:
+            {% for author in book.authors.all %}
+                {{author.name}}  {{author.surname}} {{author.patronymic}}
+            {% endfor %}
+            </p>
+            <button class="editButton">
+                <a href="{% url 'update_book' book.id %}" class="">Edit Info</a>
+            </button>
+            <button class="editButton">
+                <a href="{% url 'delete_book' book.id %}" class="">Delete Book</a>
+            </button>
+            <hr>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 style="color: white; text-align: center;">Unordered Books</h1>
+<ul>
+    {% for book in unordered_books %}
+    <li style="color: white;">
+        <a href="/book/unordered-books/{{ book.id }}/"; style="color: white; text-decoration: none;"><h2>{{book.name}}</h2></a>
+        <p>Description: {{book.description}}</p>
+        <p>Count: {{book.count}}</p>
+        <hr>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

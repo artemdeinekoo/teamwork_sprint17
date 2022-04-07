@@ -1,0 +1,40 @@
+{% extends 'order-base.html' %}
+
+{% block title %}Orders{% endblock title %} 
+
+{% block content %}
+
+<h2>Order list</h2>
+
+<table>
+    <tr>
+        <th>Order ID</th>
+        <th>Book ID</th>
+        <th>Book name</th>
+        <th>Book author</th>
+        <th>User name</th>
+        <th>User email</th>
+        <th>Update</th>
+        <th>Remove</th>
+    </tr>
+    {% for order in orders %}
+        <tr>
+            <td>{{order.id}}</td>
+            <td><a href="/book/{{order.book.id}}">{{order.book.id}}</a></td>
+            <td>{{order.book.name}}</td>
+            <td>{%for author in order.book.authors.all%}
+                {{author.surname}}
+                {{author.name}}
+                {{author.patronymic}}<p1>;</p1>
+                {% endfor %}</td>
+            <td><a href="/user/{{order.user.id}}">{{order.user.first_name}} {{order.user.middle_name}} {{order.user.last_name}}</a></td>
+            <td>{{order.user.email}}</td>
+                        <td><a class="btn btn-sm btn-info"href="{% url 'update-order' order.id %}" >Update</a></td>
+            <td><a class="btn btn-sm btn-danger"href="{% url 'delete-order' order.id %}" >Delete</a></td>
+        </tr>
+    {% endfor %}
+</table>
+
+<br>
+
+{% endblock content %}

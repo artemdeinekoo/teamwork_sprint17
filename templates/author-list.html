@@ -1,0 +1,24 @@
+{% extends 'author-base.html' %}
+
+{% block title %}Authors{% endblock title %} 
+
+{% block content %}
+<h1>List of authors</h1>
+<table>
+    <tr>
+        <th><a href="/author/sorting/{{sorted}}">Name</a></th>
+        <th>Second name</th>
+        <th>Patronymic</th>
+    </tr>
+    {% for author in authors %}
+        <tr>
+            <td><a href="/author/{{author.id}}">{{author.name}}</a></td>
+            <td>{{author.surname}}</td>
+            <td>{{author.patronymic}}</td>
+            <td><a href="{% url 'update_author' author.id %}">Edit Author</a></td>
+            <td><a href="{% url 'delete_author' author.id %}">Delete Author</a></td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock content %}
+

@@ -1,0 +1,31 @@
+{% extends 'author-base.html' %}
+
+{% block title %}Author{% endblock title %} 
+
+{% block content %}
+
+<h2>About the author</h2>
+<p><strong>Name:</strong> {{author.name}}</p>
+<p><strong>Second name:</strong> {{author.surname}}</p>
+<p><strong>Patronymic:</strong> {{author.patronymic}}</p>
+<br>
+<h2>Author's books</h2>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Count</th>
+    </tr>
+    {% for book in books %}
+        <tr>
+            <td><a href="/book/{{book.id}}">{{book.name}}</a></td>
+            <td>{{book.description}}</td>
+            <td>{{book.count}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<br>
+<p></p><a href="/author/">Back to author list</a></p>
+{% endblock content %}

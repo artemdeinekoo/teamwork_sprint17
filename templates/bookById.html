@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<ul style="list-style: none; color: #f4f4f4;"> 
+    <li>
+        <h2>{{specificBook.name}}</h2>
+        <p>{{specificBook.description}}</p>
+        <p>count: {{specificBook.count}}</p>
+    </li>
+</ul>
+
+{% endblock %}

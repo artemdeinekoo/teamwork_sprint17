@@ -1,0 +1,52 @@
+{% extends 'author-base.html' %}
+
+{% block title %}Authors{% endblock title %} 
+
+{% block content %}
+
+<h2>User info</h2>
+<ul>
+    <li><strong>First name:</strong> {{user_info.first_name}}</li>
+    <li><strong>Middle name:</strong> {{user_info.middle_name}}</li>
+    <li><strong>Last name:</strong> {{user_info.last_name}}</li>
+    <li><strong>E-mail:</strong> {{user_info.email}}</li>
+    <li><strong>Created:</strong> {{user_info.created_at}}</li>
+    <li><strong>Role:</strong> 
+        {% if user_info.role == 1 %}
+        Admin
+        {% else %}
+        User
+        {% endif %}
+    </li>
+    <li><strong>Is active:</strong> 
+        {% if user_info.is_active == True %}
+        Yes
+        {% else %}
+        No
+        {% endif %}
+    </li>
+</ul>
+
+<br>
+
+<h2>Order list</h2>
+
+<table>
+    <tr>
+        <th>Order ID</th>
+        <th>Book ID</th>
+        <th>Book name</th>
+    </tr>
+    {% for order in orders %}
+        <tr>
+            <td>{{order.id}}</td>
+            <td><a href="/book/{{order.book.id}}">{{order.book.id}}</a></td>
+            <td>{{order.book.name}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<br>
+<p></p><a href="/user/">Go to user list</a></p>
+<p></p><a href="/order/">Go to order list</a></p>
+{% endblock content %}

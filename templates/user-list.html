@@ -1,0 +1,44 @@
+{% extends 'user-base.html' %}
+
+{% block title %}Users{% endblock title %} 
+
+{% block content %}
+<h1>List of users</h1>
+<table>
+    <tr>
+        <td>User ID</td>
+        <td>First name</td>
+        <td>Middle name</td>
+        <td>Last name</td>
+        <td>E-mail</td>
+        <td>Role</td>
+        <td>Is active</td>
+        <td>Update</td>
+        <td>Remove</td>
+    </tr>
+    {% for user in users %}
+        <tr>
+            <td>{{user.id}}</a></td>
+            <td><a href="/user/{{user.id}}">{{user.first_name}}</a></td>
+            <td>{{user.middle_name}}</td>
+            <td>{{user.last_name}}</td>
+            <td>{{user.email}}</td>
+            <td>{% if user.role == 1 %}
+                Admin
+                {% else %}
+                User
+                {% endif %}
+            </td>
+            <td>
+                {% if user.is_active == True %}
+                Yes
+                {% else %}
+                No
+                {% endif %}
+            </td>
+            <td><a class="btn btn-sm btn-info" href="{% url 'update-user' user.id %}">Update</a></td>
+            <td><a class="btn btn-sm btn-danger" href="{% url 'delete-user' user.id %}">Delete</a></td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock content %}
