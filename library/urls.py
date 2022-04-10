@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from book.views import *
 from library import views
+from authentication.views import CustomUsersAPIView, CustomUserAPIView  
+from author.views import AuthorsAPIView, AuthorAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +28,8 @@ urlpatterns = [
     path("user/", include("authentication.urls")),
     path("order/", include("order.urls")),
     path('', include('book.urls')),
+    path('api/v1/user', CustomUsersAPIView.as_view()),
+    path('api/v1/user/<int:pk>', CustomUserAPIView.as_view()),
+    path('api/v1/author', AuthorsAPIView.as_view()),
+    path('api/v1/author/<int:pk>', AuthorAPIView.as_view()),
 ]
