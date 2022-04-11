@@ -16,10 +16,10 @@ Including another URLconf
 from xml.etree.ElementInclude import include
 from django.contrib import admin
 from django.urls import path, include
-from book.views import *
 from library import views
 from authentication.views import CustomUsersAPIView, CustomUserAPIView  
 from author.views import AuthorsAPIView, AuthorAPIView
+from book.views import BooksAPIView, BookAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,4 +32,6 @@ urlpatterns = [
     path('api/v1/user/<int:pk>', CustomUserAPIView.as_view()),
     path('api/v1/author', AuthorsAPIView.as_view()),
     path('api/v1/author/<int:pk>', AuthorAPIView.as_view()),
+    path('api/v1/book', BooksAPIView.as_view()),
+    path('api/v1/book/<int:pk>', BookAPIView.as_view()),
 ]
