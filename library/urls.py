@@ -20,6 +20,7 @@ from library import views
 from authentication.views import CustomUsersAPIView, CustomUserAPIView  
 from author.views import AuthorsAPIView, AuthorAPIView
 from book.views import BooksAPIView, BookAPIView
+from order.views import OrdersAPIView, OrderAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,4 +35,6 @@ urlpatterns = [
     path('api/v1/author/<int:pk>', AuthorAPIView.as_view()),
     path('api/v1/book', BooksAPIView.as_view()),
     path('api/v1/book/<int:pk>', BookAPIView.as_view()),
+    path('api/v1/order', OrdersAPIView.as_view()),
+    path('api/v1/order/<int:pk>', OrderAPIView.as_view()),
 ]
